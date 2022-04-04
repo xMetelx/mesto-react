@@ -2,7 +2,7 @@ import React from "react"
 
 function PopupWithForm (props) {
   return (
-    <div className={props.isOpen ? `popup popup_type_${props.name} popup_opened` : `popup popup_type_${props.name}`}>
+    <div className={props.isOpen ? `popup popup_opened` : `popup`}>
       <div className="popup__container">
         <button type="button" className="popup__close" onClick={props.onClose}></button>
         
@@ -11,7 +11,7 @@ function PopupWithForm (props) {
           
           {props.children}
 
-          <button type="submit" disabled className="popup__button popup__button_disabled">Создать</button>
+          <button type="submit" disabled className="popup__button popup__button_disabled">{props.buttonText}</button>
         </form>
       </div>
     </div> 

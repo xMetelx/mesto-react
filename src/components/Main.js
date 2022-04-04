@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../utils/api';
 import Card from './Card';
 
 const Main = ({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) => {
 
-  const [userName, setUserName] = useState(true);
-  const [userDescription, setUserDescription] = useState(true);
-  const [userAvatar, setUserAvatar] = useState(true);
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
 
   useEffect (() => {
+
     api.getUserInfo()
       .then((data) => {
         setUserName(data.name);
@@ -17,14 +18,13 @@ const Main = ({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) => {
         setUserAvatar(data.avatar)
       })
       .catch(err => console.log(err))
-  }, [])
 
-  useEffect(() => {
     api.getCards()
       .then((data) => {
         setCards(data)
       })
       .catch(err => console.log(err))
+
   }, [])
 
   return (

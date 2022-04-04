@@ -10,13 +10,13 @@ function App () {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen]  = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setisAddPlacePopupOpen(false);
-    setSelectedCard(false);
+    setSelectedCard({});
  }
 
 
@@ -37,63 +37,58 @@ function App () {
   }
 
   return (
-      <>
-        <div className="page">
-          <Header />
-          <Main 
-            onEditAvatar = {handleEditAvatarClick}
-            onEditProfile = {handleEditProfileClick}
-            onAddPlace = {handleAddPlaceClick}
-            onCardClick = {handleCardClick}
-          />
-          <Footer />
+    <div className="page">
+      <Header />
+      <Main 
+        onEditAvatar = {handleEditAvatarClick}
+        onEditProfile = {handleEditProfileClick}
+        onAddPlace = {handleAddPlaceClick}
+        onCardClick = {handleCardClick}
+      />
+      <Footer />
 
-          <PopupWithForm
-            name = "edit-profile"
-            title = "Редактировать профиль"
-            children = {
-              <div style={{overflow: 'hidden'}}>
-                <input required id="input-name" type="text" name="name" minLength="2" maxLength="40" placeholder="Ваше имя" className="popup__input popup__input_name_name" /> <span className="input-name-error popup__inputs-error">Вы пропустили это поле</span>
-                <input required id="input-job" type="text" name="about" minLength="2" maxLength="200" placeholder="Род занятий" className="popup__input popup__input_name_job" />
-                <span className="input-job-error popup__inputs-error">Вы пропустили это поле</span>
-              </div>}
-              isOpen={isEditProfilePopupOpen}
-              onClose = {closeAllPopups}
-          />
+      <PopupWithForm
+        name = "edit-profile"
+        title = "Редактировать профиль"
+        buttonText="Сохранить"
+        isOpen={isEditProfilePopupOpen}
+        onClose = {closeAllPopups}
+      >
+        <input required id="input-name" type="text" name="name" minLength="2" maxLength="40" placeholder="Ваше имя" className="popup__input popup__input_name_name" /> <span className="input-name-error popup__inputs-error">Вы пропустили это поле</span>
+        <input required id="input-job" type="text" name="about" minLength="2" maxLength="200" placeholder="Род занятий" className="popup__input popup__input_name_job" />
+        <span className="input-job-error popup__inputs-error">Вы пропустили это поле</span>
 
-          <PopupWithForm
-            name = "add-card"
-            title = "Новое место"
-            children = {
-               <div style={{overflow: 'hidden'}}>
-                <input required id="input-title" type="text" name="title" minLength="1" maxLength="30" placeholder="Название" className="popup__input popup__input_title" /><span className="input-title-error popup__inputs-error">Вы пропустили это поле</span>
-                <input required id="input-link" type="url" name="link" placeholder="Ссылка на картинку" className="popup__input popup__input_link" />
-                <span className="input-link-error popup__inputs-error">Вы пропустили это поле</span>  
-              </div>
-            }
-            isOpen = {isAddPlacePopupOpen}
-            onClose = {closeAllPopups}
-          />
+      </PopupWithForm>
 
-          <PopupWithForm
-            name = "change-avatar"
-            title = "Обновить аватар"
-            children = {
-            <div style={{overflow: 'hidden'}}>
-              <input required id="input-avatar" type="url" name="avatar" placeholder="Ваша ссылка" className="popup__input popup__input_avatar" />
-              <span className="input-avatar-error popup__inputs-error">Вы пропустили это поле</span>
-              </div>
-            }
-            isOpen = {isEditAvatarPopupOpen}
-            onClose = {closeAllPopups}
-          />
+      <PopupWithForm
+        name = "add-card"
+        title = "Новое место"
+        buttonText = "Создать"
+        isOpen = {isAddPlacePopupOpen}
+        onClose = {closeAllPopups}
+      >
+        <input required id="input-title" type="text" name="title" minLength="1" maxLength="30" placeholder="Название" className="popup__input popup__input_title" /><span className="input-title-error popup__inputs-error">Вы пропустили это поле</span>
+        <input required id="input-link" type="url" name="link" placeholder="Ссылка на картинку" className="popup__input popup__input_link" />
+        <span className="input-link-error popup__inputs-error">Вы пропустили это поле</span>  
+      </PopupWithForm>  
 
-          <ImagePopup 
-            card = {selectedCard}
-            onClose = {closeAllPopups}
-          />
-        </div>
-      </>)
+      <PopupWithForm
+        name = "change-avatar"
+        title = "Обновить аватар"
+        buttonText = "Сохранить"
+        isOpen = {isEditAvatarPopupOpen}
+        onClose = {closeAllPopups}
+      >
+          <input required id="input-avatar" type="url" name="avatar" placeholder="Ваша ссылка" className="popup__input popup__input_avatar" />
+          <span className="input-avatar-error popup__inputs-error">Вы пропустили это поле</span>
+      </PopupWithForm>
+
+      <ImagePopup 
+        card = {selectedCard}
+        onClose = {closeAllPopups}
+      />
+    </div>
+  )
 }
 
 export default App;
