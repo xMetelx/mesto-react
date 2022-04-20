@@ -1,46 +1,25 @@
-import { useEffect, useState } from 'react';
-import api from '../utils/api';
+import { useContext } from 'react';
 import Card from './Card';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
-const Main = ({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) => {
+const Main = ({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards}) => {
 
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
-
-  useEffect (() => {
-
-    api.getUserInfo()
-      .then((data) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar)
-      })
-      .catch(err => console.log(err))
-
-    api.getCards()
-      .then((data) => {
-        setCards(data)
-      })
-      .catch(err => console.log(err))
-
-  }, [])
-
+  const { name, about, avatar } = useContext(CurrentUserContext);
+ 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__intro">
           <button type="button" className="profile__avatar" onClick={onEditAvatar}>
-          <div className="profile__photo" style={{backgroundImage: `url(${userAvatar})`}}></div>
+          <div className="profile__photo" style={{backgroundImage: `url(${avatar})`}}></div>
           </button>  
           <div className="profile__text">
             <div className="profile__edit">
-              <h1 className="profile__title">{userName}</h1>
+              <h1 className="profile__title">{name}</h1>
               <button type="button" aria-label="Изменить профайл" onClick={onEditProfile} className="profile__pen-button">
               </button>
             </div>
-            <p className="profile__subtitle">{userDescription}</p>
+            <p className="profile__subtitle">{about}</p>
           </div>
         </div>
         <button type="button" aria-label="Добавить карточку" onClick={onAddPlace}  className="profile__add"></button>
@@ -90,6 +69,8 @@ const Main = ({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) => {
         key = {card._id}
         card = {card}
         click = {onCardClick}
+        like = {onCardLike}
+        delete = {onCardDelete}
       /> 
     ))
     }

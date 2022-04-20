@@ -6,12 +6,12 @@ function PopupWithForm (props) {
       <div className="popup__container">
         <button type="button" className="popup__close" onClick={props.onClose}></button>
         
-        <form noValidate name={props.name} className="popup__inputs">
+        <form onSubmit={props.onSubmit} noValidate name={props.name} className="popup__inputs">
           <h2 className="popup__title">{props.title}</h2>
           
           {props.children}
 
-          <button type="submit" disabled className="popup__button popup__button_disabled">{props.buttonText}</button>
+          <button type="submit" className="popup__button">{props.buttonText}</button>
         </form>
       </div>
     </div> 

@@ -55,22 +55,21 @@ class Api {
       .then(this._checkResponse)
   }
 
-  // ставим лайк
-  setCardLike (cardId) {
-    return fetch(`${this._baseUrl + '/cards/likes'}/${cardId}`, {
+  changeLikeCardStatus(cardId, isLiked) {
+    
+    const setLike = {
       method: 'PUT',
       headers: this._headers
-    })
-      .then(this._checkResponse)
-  }
+    }
 
-  // удаляем лайк
-  deleteCardLike (cardId) {
-    return fetch(`${this._baseUrl + '/cards/likes'}/${cardId}`, {
+    const deleteLike = {
       method: 'DELETE',
       headers: this._headers
-    })
-      .then(this._checkResponse)
+    }
+
+    return fetch(`${this._baseUrl + '/cards/likes'}/${cardId}`, isLiked ? deleteLike : setLike)
+    .then(this._checkResponse)
+
   }
 
   // удаляем карточку
