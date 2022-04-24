@@ -10,7 +10,7 @@ function EditProfilePopup ({isOpen, onClose, onSubmit}) {
   useEffect(() => {
       setName(currentUser.name || "");
       setDescription(currentUser.about || "");
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function onChangeName (evt) {
     setName(evt.target.value)
