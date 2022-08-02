@@ -21,4 +21,17 @@
 <li>Webpack</li>
 </ul>
 
+## Инструкиця по установке:
+<ul> 
+<li>Клонировать репозиторий:</li>
+<br>
+<li>git clone https://github.com/xMetelx/mesto-react.git</li>
+<br>
+<li>Установить требуемые зависимости:</li>
+<li>npm install</li>
+<li>Запустить проект:</li>
+<li>npm start</>
+</ul>
+
+
 ## <a href="https://xmetelx.github.io/mesto-react/">Ссылка на проект</a>
