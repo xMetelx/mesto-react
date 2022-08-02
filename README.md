@@ -22,16 +22,17 @@
 </ul>
 
 ## Инструкиця по установке:
-<ul> 
-<li>Клонировать репозиторий:</li>
 <br>
-<li>git clone https://github.com/xMetelx/mesto-react.git</li>
+Клонировать репозиторий:
 <br>
-<li>Установить требуемые зависимости:</li>
-<li>npm install</li>
-<li>Запустить проект:</li>
-<li>npm start</>
-</ul>
-
+git clone https://github.com/xMetelx/mesto-react.git
+<br>
+Установить требуемые зависимости:
+<br>
+npm install
+<br>
+Запустить проект:
+<br>
+npm start
 
 ## <a href="https://xmetelx.github.io/mesto-react/">Ссылка на проект</a>
